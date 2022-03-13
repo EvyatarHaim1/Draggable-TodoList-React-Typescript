@@ -1,5 +1,6 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
+
 import { Todo } from "../model";
 import SingleTodo from "./SingleTodo";
 
@@ -18,19 +19,19 @@ const TodoList: React.FC<Props> = ({
 }) => {
   return (
     <div className="container">
-      <Droppable droppableId="todosList">
-        {(provided) => (
+      <Droppable droppableId="TodosList">
+        {(provided, snapshot) => (
           <div
-            className="todos"
+            className={`todos ${snapshot.isDraggingOver ? "dragActive" : ""}`}
             ref={provided.innerRef}
             {...provided.droppableProps}>
             <span className="todos__heading">Active Tasks</span>
-            {todos.map((todo, index) => (
+            {todos?.map((todo, index) => (
               <SingleTodo
                 index={index}
-                key={todo.id}
-                todo={todo}
                 todos={todos}
+                todo={todo}
+                key={todo.id}
                 setTodos={setTodos}
               />
             ))}
@@ -38,14 +39,16 @@ const TodoList: React.FC<Props> = ({
           </div>
         )}
       </Droppable>
-      <Droppable droppableId="todosRemove">
-        {(provided) => (
+      <Droppable droppableId="TodosRemove">
+        {(provided, snapshot) => (
           <div
-            className="todos remove"
+            className={`todos remove ${
+              snapshot.isDraggingOver ? "dragComplete" : ""
+            }}`}
             ref={provided.innerRef}
             {...provided.droppableProps}>
             <span className="todos__heading">Completed Tasks</span>
-            {completedTodos.map((todo, index) => (
+            {completedTodos?.map((todo, index) => (
               <SingleTodo
                 index={index}
                 key={todo.id}

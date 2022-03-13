@@ -122,3 +122,15 @@
 .remove {
   background-color: rgb(235, 103, 80);
 }
+
+.dragActive {
+  background-color: rgb(0, 221, 236);
+}
+
+.dragComplete {
+  background-color: rgb(255, 38, 0);
+}
+
+.drag {
+  box-shadow: 0 0 20px black;
+}
