@@ -4,3 +4,4 @@ Draggable Todo-List with:
 - Typescript
 - react-beautiful-dnd
 - react-icons
+- Firebase hosting
